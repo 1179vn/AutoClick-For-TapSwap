@@ -108,15 +108,15 @@
 
 
     // Настраиваемые значения
-    const minClickDelay = 30; // Минимальная задержка между кликами в миллисекундах
-    const maxClickDelay = 50; // Максимальная задержка между кликами в миллисекундах
-    const pauseMinTime = 100000; // Минимальная пауза в миллисекундах (100 секунд)
-    const pauseMaxTime = 300000; // Максимальная пауза в миллисекундах (300 секунд)
-    const energyThreshold = 25; // Порог энергии, ниже которого делается пауза
-    const checkInterval = 1500; // Интервал проверки наличия монеты в миллисекундах (3 секунды)
-    const maxCheckAttempts = 3; // Максимальное количество попыток проверки наличия монеты
+    const minClickDelay = 30; // Độ trễ tối thiểu giữa các lần nhấp tính bằng mili giây
+    const maxClickDelay = 50; // Độ trễ tối đa giữa các lần nhấp tính bằng mili giây
+    const pauseMinTime = 100000; // Tạm dừng tối thiểu tính bằng mili giây (100 giây)
+    const pauseMaxTime = 300000; // Tạm dừng tối đa tính bằng mili giây (300 giây)
+    const energyThreshold = 25; // Ngưỡng năng lượng dưới đó sẽ tạm dừng
+    const checkInterval = 1500; // Khoảng thời gian kiểm tra sự hiện diện của tiền xu tính bằng mili giây (3 giây)
+    const maxCheckAttempts = 5; // Số lần thử tối đa để kiểm tra tính khả dụng của tiền xu
     
-    let checkAttempts = 0; // Счётчик попыток проверки
+    let checkAttempts = 0; // Bộ đếm nỗ lực xác minh
 
     function triggerEvent(element, eventType, properties) {
         const event = new MouseEvent(eventType, properties);
@@ -151,43 +151,9 @@
             setTimeout(clickButton, pauseTime);
             return;
         }
-
         const button = document.querySelector("#ex1-layer img");
         if (button) {
-            const rect = button.getBoundingClientRect();
-            const radius = Math.min(rect.width, rect.height) / 2;
-            const { x, y } = getRandomCoordinateInCircle(radius);
-    
-            const clientX = rect.left + radius + x;
-            const clientY = rect.top + radius + y;
-    
-            const commonProperties = {
-                bubbles: true,
-                cancelable: true,
-                view: window,
-                clientX: clientX,
-                clientY: clientY,
-                screenX: clientX,
-                screenY: clientY,
-                pageX: clientX,
-                pageY: clientY,
-                pointerId: 1,
-                pointerType: "touch",
-                isPrimary: true,
-                width: 1,
-                height: 1,
-                pressure: 0.5,
-                button: 0,
-                buttons: 1
-            };
-    
-            // Trigger events
-            triggerEvent(button, 'pointerdown', commonProperties);
-            triggerEvent(button, 'mousedown', commonProperties);
-            triggerEvent(button, 'pointerup', { ...commonProperties, pressure: 0 });
-            triggerEvent(button, 'mouseup', commonProperties);
-            triggerEvent(button, 'click', commonProperties);
-    
+            clickElement(button);
             // Schedule the next click with a random delay
             const delay = minClickDelay + Math.random() * (maxClickDelay - minClickDelay);
             setTimeout(checkCoinAndClick, delay);
@@ -199,6 +165,7 @@
     function checkCoinAndClick() {
          if (!isGamePaused) {
             try {
+                //Lấy button Tap Coin
                 const button = document.querySelector("#ex1-layer img");
                 if (button) {
                     console.log(`${logPrefix}Coin found. The click is executed.`, styles.success);
@@ -206,10 +173,12 @@
                 } else {
                     checkAttempts++;
                     if (checkAttempts >= maxCheckAttempts) {
-                        console.log(`${logPrefix}Coin not found after 3 attempts. Reloading the page.`, styles.error);
+                        console.log(`${logPrefix}Coin not found after @{maxCheckAttempts} attempts. Reloading the page.`, styles.error);
                         location.reload();
                     } else {
                         console.log(`${logPrefix}Coin not found. Attempt  ${checkAttempts}/${maxCheckAttempts}. Check again after 3 seconds.`, styles.error);
+                        const navTap = document.querySelector("._bottomContent_1uv7x_1 _button_1dzm3_1:nth-child(3)");
+                        if(navTap) clickElement(navTap);
                         setTimeout(checkCoinAndClick, checkInterval);
                     }
                 }
