@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         AutoClick For TapSwap - Auto
 // @namespace    AutoClickForTelegramMiniApp
-// @version      2024-06-18
+// @version      2024-06-18-08:28
 // @description  AutoClick For TapSwap
 // @author       KenVnit
 // @match        *://app.tapswap.club/*
