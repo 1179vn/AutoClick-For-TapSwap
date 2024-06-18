@@ -6,8 +6,8 @@
 // @author       KenVnit
 // @match        *://app.tapswap.club/*
 // @grant        none
-// @downloadURL  https://github.com/1179vn/AutoClick-For-TapSwap/raw/main/AutoClick-For-TapSwap-Init-Browser.user.js
-// @updateURL    https://github.com/1179vn/AutoClick-For-TapSwap/raw/main/AutoClick-For-TapSwap-Init-Browser.user.js
+// @downloadURL  https://github.com/1179vn/AutoClick-For-TapSwap/raw/main/AutoClick-For-TapSwap-Auto.user.js
+// @updateURL    https://github.com/1179vn/AutoClick-For-TapSwap/raw/main/AutoClick-For-TapSwap-Auto.user.js
 // @homepage     https://github.com/1179vn/AutoClick-For-TapSwap
 // ==/UserScript==
 
