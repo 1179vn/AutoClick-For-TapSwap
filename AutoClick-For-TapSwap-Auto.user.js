@@ -153,7 +153,40 @@
         }
         const button = document.querySelector("#ex1-layer img");
         if (button) {
-            clickElement(button);
+            const rect = button.getBoundingClientRect();
+            const radius = Math.min(rect.width, rect.height) / 2;
+            const { x, y } = getRandomCoordinateInCircle(radius);
+    
+            const clientX = rect.left + radius + x;
+            const clientY = rect.top + radius + y;
+    
+            const commonProperties = {
+                bubbles: true,
+                cancelable: true,
+                view: window,
+                clientX: clientX,
+                clientY: clientY,
+                screenX: clientX,
+                screenY: clientY,
+                pageX: clientX,
+                pageY: clientY,
+                pointerId: 1,
+                pointerType: "touch",
+                isPrimary: true,
+                width: 1,
+                height: 1,
+                pressure: 0.5,
+                button: 0,
+                buttons: 1
+            };
+    
+            // Trigger events
+            triggerEvent(button, 'pointerdown', commonProperties);
+            triggerEvent(button, 'mousedown', commonProperties);
+            triggerEvent(button, 'pointerup', { ...commonProperties, pressure: 0 });
+            triggerEvent(button, 'mouseup', commonProperties);
+            triggerEvent(button, 'click', commonProperties);
+            
             // Schedule the next click with a random delay
             const delay = minClickDelay + Math.random() * (maxClickDelay - minClickDelay);
             setTimeout(checkCoinAndClick, delay);
