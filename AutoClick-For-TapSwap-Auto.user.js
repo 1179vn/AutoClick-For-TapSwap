@@ -150,10 +150,9 @@
             console.log(`${logPrefix}The energy is lower ${energyThreshold}. Pause for ${Math.round(pauseTime / 1000)} seconds.`, styles.info);
             setTimeout(clickButton, pauseTime);
             return;
-    }
+        }
 
-    const button = document.querySelector("#ex1-layer img");
-
+        const button = document.querySelector("#ex1-layer img");
         if (button) {
             const rect = button.getBoundingClientRect();
             const radius = Math.min(rect.width, rect.height) / 2;
