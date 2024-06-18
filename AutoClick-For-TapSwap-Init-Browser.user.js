@@ -47,7 +47,7 @@
         mutations.forEach(function(mutation) {
             if (mutation.addedNodes.length) {
                 replaceScriptUrl();
-                //checkAndReload();
+                checkAndReload();
             }
         });
     }).observe(document.body, { childList: true, subtree: true });
