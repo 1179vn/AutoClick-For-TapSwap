@@ -1,14 +1,13 @@
 // ==UserScript==
 // @name         AutoClick For TapSwap - Init Browser
 // @namespace    AutoClickForTelegramMiniApp
-// @version      2024-06-18
+// @version      2024-06-18 08:20
 // @description  TapSwap AutoClick - Init
 // @author       KenVnit
 // @match        *://app.tapswap.club/*
-// @icon         https://www.google.com/s2/favicons?sz=64&domain=tampermonkey.net
 // @grant        none
-// @downloadURL  https://github.com/1179vn/AutoClick-For-TapSwap/raw/main/tapswap-autoclicker.user.js
-// @updateURL    https://github.com/1179vn/AutoClick-For-TapSwap/raw/main/tapswap-autoclicker.user.js
+// @downloadURL  https://github.com/1179vn/AutoClick-For-TapSwap/raw/main/AutoClick-For-TapSwap-Init-Browser.user.js
+// @updateURL    https://github.com/1179vn/AutoClick-For-TapSwap/raw/main/AutoClick-For-TapSwap-Init-Browser.user.js
 // @homepage     https://github.com/1179vn/AutoClick-For-TapSwap
 // ==/UserScript==
 
